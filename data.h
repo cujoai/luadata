@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2017-2019 CUJO LLC.
  * Copyright (c) 2013, 2014, Lourival Vieira Neto <lneto@NetBSD.org>.
  * All rights reserved.
  *
