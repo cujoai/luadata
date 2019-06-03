@@ -39,7 +39,6 @@
 #endif
 
 #ifdef __GNUC__
-#define bswap64		__builtin_bswap64
 #define BYTE_ORDER	__BYTE_ORDER__
 #define LITTLE_ENDIAN	__ORDER_LITTLE_ENDIAN__
 #define BIG_ENDIAN	__ORDER_BIG_ENDIAN__

@@ -30,6 +30,9 @@
 #include <limits.h>
 #include <sys/param.h>
 #include <sys/types.h>
+#ifdef __GNUC__
+#define bswap64 __builtin_bswap64
+#endif
 #else
 #if defined(__NetBSD__)
 #include <machine/limits.h>
