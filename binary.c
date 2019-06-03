@@ -33,7 +33,9 @@
 
 /* __builtin_bswap64 exists only since GCC 4.3.0 */
 #if defined(__GNUC__) && \
-	(__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))
+	(__GNUC__ > 4 || \
+	 (__GNUC__ == 4 && __GNUC_MINOR__ >= 3) || \
+	 (__clang__ && __has_builtin(__builtin_bswap64)))
 #define bswap64 __builtin_bswap64
 #elif !defined(bswap64)
 #error It looks like bswap64 does not exist in your platform/toolchain!
