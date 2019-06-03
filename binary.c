@@ -30,9 +30,13 @@
 #include <limits.h>
 #include <sys/param.h>
 #include <sys/types.h>
-#ifdef __GNUC__
+
+/* __builtin_bswap64 exists only since GCC 4.3.0 */
+#if defined(__GNUC__) && \
+	(__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))
 #define bswap64 __builtin_bswap64
 #endif
+
 #else
 #if defined(__NetBSD__)
 #include <machine/limits.h>
