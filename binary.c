@@ -36,12 +36,18 @@
 #include <sys/param.h>
 #elif defined(__linux__)
 #include <linux/kernel.h>
+#include <linux/swab.h>
+#define luadata_bswap64s swab64s
 #endif
 #endif
 
 #include <sys/endian.h>
 
 #include "binary.h"
+
+#ifndef luadata_bswap64s
+#define luadata_bswap64s(x) (*(x) = bswap64(*(x)))
+#endif
 
 #define BYTE_MAX	UCHAR_MAX
 #define UINT64_BIT	(64)
@@ -98,7 +104,7 @@ swap_bytes_in(uint64_t *value, size_t width)
 
 	*value <<= msb_offset;
 
-	*value = bswap64(*value);
+	luadata_bswap64s(value);
 
 	byte_t truncated = TRUNCATED_BITS(width);
 	if (truncated > 0)
@@ -110,7 +116,7 @@ swap_bytes_out(uint64_t *value, size_t width)
 {
 	size_t msb_offset = VALUE_MSB_OFFSET(width);
 
-	*value = bswap64(*value);
+	luadata_bswap64s(value);
 
 	byte_t truncated = TRUNCATED_BITS(width);
 	if (truncated > 0)
