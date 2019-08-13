@@ -39,6 +39,15 @@
 #endif
 
 #ifdef __GNUC__
+#if !defined (__BYTE_ORDER__) && (defined (__ARMEL__) || defined (__ARMEB__))
+#define __ORDER_LITTLE_ENDIAN__ 1234
+#define __ORDER_BIG_ENDIAN__ 4321
+#if defined __ARMEL__
+#define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
+#else
+#define __BYTE_ORDER__ __ORDER_BIG_ENDIAN__
+#endif
+#endif
 #define BYTE_ORDER	__BYTE_ORDER__
 #define LITTLE_ENDIAN	__ORDER_LITTLE_ENDIAN__
 #define BIG_ENDIAN	__ORDER_BIG_ENDIAN__
